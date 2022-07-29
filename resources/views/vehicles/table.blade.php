@@ -1,3 +1,11 @@
+@if(auth()->user()->level == 'admin')
+
+        
+<a href="{{ route('exportvehicle') }}" class="btn btn-success">Export To Excel</a>
+<br>
+<br>
+@endif
+
 <table id="data_table" class="table">
     <thead>
         <tr>
@@ -26,9 +34,9 @@
                     <a href="{{ route('vehicles.edit', $vehicle->id) }}"><i class="ik ik-edit-2"></i></a>
                     
                     <a href="#"  data-toggle="modal" data-target="#delete{{ $key }}"><i class="ik ik-trash-2"></i></a>
-                    @method('PUT')
+
                     @csrf
-                    <a href="{{ route('vehicles.update', $vehicle->id)}}" ><i class="ik ik-log-out"></i></a>
+                    <a href="{{ route('exitvehicle', $vehicle->id)}}" ><i class="ik ik-log-out"></i></a>
                 </div>
             </td>
             <td></td>
@@ -36,7 +44,10 @@
         @include('vehicles.show')
         @include('vehicles.delete')
         @endforeach
-        <a href="{{ route('exportvehicle') }}" class="btn btn-success">Export</a>
+
+       
 
     </tbody>
 </table>
+
+

@@ -17,7 +17,7 @@
                         <li class="list-group-item">Duration</li>
                     </div>
                     <div class="col-md-8">
-                        <li class="list-group-item text-right"><strong>{{ $vehicle->duration }} Hour</strong></li>
+                        <li class="list-group-item text-right"><strong>{{ $diff = Carbon\Carbon::parse($vehicle->created_at)->diffInHours(Carbon\Carbon::now()) }} Hours</strong></li>
                         </div>
                     </div>
                     <div class="row">
@@ -33,7 +33,7 @@
                             <li class="list-group-item">Total Amount</li>
                         </div>
                         <div class="col-md-8">
-                            <li class="list-group-item text-right"><strong>Rp {{ $vehicle->duration *  3000 }}</strong></li>
+                            <li class="list-group-item text-right"><strong>Rp {{ $diff *  3000 }}</strong></li>
                         </div>
                         </div>
 

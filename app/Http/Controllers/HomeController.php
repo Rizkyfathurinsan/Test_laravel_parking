@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +14,9 @@ class HomeController extends Controller
        $vehicles  = new Vehicle();
        $duration = [];
        foreach ($vehicles->get() as $key => $vehicle) {
-        $duration[] =  $vehicle->duration * 3000;
+        $diff = Carbon::parse($vehicle->created_at)->diffInHours(Carbon::now());
+        
+        $duration[] =  $diff * 3000;
        }
 
        $total_amount = array_sum($duration);
