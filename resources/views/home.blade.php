@@ -60,6 +60,8 @@
                 </div>
             </div>
         </div>
+       
+        @if(auth()->user()->level == 'admin')
         <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="widget">
                 <div class="widget-body">
@@ -79,6 +81,8 @@
                 </div>
             </div>
         </div>
+        @endif
+
     </div>
 
     <div class="card">

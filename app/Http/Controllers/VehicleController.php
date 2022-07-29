@@ -28,7 +28,7 @@ class VehicleController extends Controller
 
     public function export() 
     {
-        return Excel::download(new VehiclesExport, 'report.xlsx');
+        return Excel::download(new VehiclesExport, 'report '.Carbon::now().'.xlsx');
     }
 
     /**
@@ -65,9 +65,7 @@ class VehicleController extends Controller
      */
     public function show(Vehicle $vehicle)
     {
-        $vehicle = Vehicle::find($id);
-        $vehicle->update(['status' => 0]);
-        return redirect()->route('vehicles.index')->with('success', 'Vehicle exited!!');
+        
     }
 
     /**
@@ -90,7 +88,10 @@ class VehicleController extends Controller
      */
     public function update(UpdateVehicleRequest $request, Vehicle $vehicle)
     {
-        //
+        $vehicle = Vehicle::find($id);
+        $vehicle->update(['status' => 0]);
+        return redirect()->route('vehicles.index')->with('success', 'Vehicle exited!!');
+
     }
 
     /**
@@ -107,16 +108,9 @@ class VehicleController extends Controller
 
     public function exit(Vehicle $vehicle)
     {
-      $vehicle->update(['status' => false]);
-
-      if($vehicle->status == true)
-      {
-        return redirect()->route('vehicles.index')->with('error', 'Vehicle Cannot exit please check the inputs!!');
-      } 
-      else
-      {
+        $vehicle = Vehicle::find($id);
+        $vehicle->update(['status' => 0]);
         return redirect()->route('vehicles.index')->with('success', 'Vehicle exited!!');
-      }
 
     }
 }
